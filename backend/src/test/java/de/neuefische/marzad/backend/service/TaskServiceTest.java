@@ -51,6 +51,19 @@ class TaskServiceTest {
 
         TaskModel result = taskService.getTaskDetails(1);
 
-        assertEquals(result, newTask.toString());
+        assertEquals(result, newTask);
+    }
+
+    @Test
+    void test_changeStatusOfTask(){
+
+        TaskModel newTask = new TaskModel(1, "abc",Status.DONE);
+        toDoRepo.addTask("abc");
+
+        when(taskService.changeStatusOfTask(1, Status.DONE)).thenReturn(newTask);
+
+        TaskModel result = taskService.changeStatusOfTask(1, Status.DONE);
+
+        assertEquals(result, newTask);
     }
 }

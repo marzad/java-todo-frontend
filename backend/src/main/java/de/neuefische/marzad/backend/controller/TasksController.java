@@ -1,6 +1,7 @@
 package de.neuefische.marzad.backend.controller;
 
 
+import de.neuefische.marzad.backend.model.Status;
 import de.neuefische.marzad.backend.model.TaskModel;
 import de.neuefische.marzad.backend.repository.ToDoRepo;
 import de.neuefische.marzad.backend.service.TaskService;
@@ -32,6 +33,11 @@ public class TasksController {
     @GetMapping("todo/{id}")
     public TaskModel getTaskDetails(@PathVariable int id){
         return taskService.getTaskDetails(id);
+    }
+
+    @PutMapping("todo/{id}")
+    public TaskModel changeStatusOfTask(@RequestParam int id, @RequestParam TaskModel task){
+        return taskService.changeStatusOfTask(id, task.status());
     }
 
 }

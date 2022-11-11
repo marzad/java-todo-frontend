@@ -1,5 +1,6 @@
 package de.neuefische.marzad.backend.service;
 
+import de.neuefische.marzad.backend.model.Status;
 import de.neuefische.marzad.backend.model.TaskModel;
 import de.neuefische.marzad.backend.repository.ToDoRepo;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,9 @@ public class TaskService {
 
     public TaskModel getTaskDetails(int id) {
         return toDoRepo.getTaskDetails(id);
+    }
+
+    public TaskModel changeStatusOfTask(int id, Status status) {
+        return toDoRepo.changeStatusOfTask(id, status);
     }
 }

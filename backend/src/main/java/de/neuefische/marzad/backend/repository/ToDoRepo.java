@@ -21,10 +21,6 @@ public class ToDoRepo {
         return newTask;
     }
 
-/*    public  TaskModel addTask(TaskModel task){
-    toDoList.add(task);
-    return task;*/
-
 
     public List<TaskModel> getToDoList(){
         return toDoList;
@@ -37,5 +33,17 @@ public class ToDoRepo {
             }
         }
         return null;
+    }
+
+    public TaskModel changeStatusOfTask(int id, Status status) {
+        for(int i = 0; i < toDoList.size(); i++){
+            if(toDoList.get(i).id() == id){
+                TaskModel newtask = new TaskModel(i, toDoList.get(i).description(), status);
+                toDoList.set(i, newtask);
+                return newtask;
+            }
+        }
+        return null;
+
     }
 }
