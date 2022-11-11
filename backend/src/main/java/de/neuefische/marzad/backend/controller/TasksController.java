@@ -24,9 +24,14 @@ public class TasksController {
         return taskService.getToDoList();
     }
 
-    @PutMapping("todo/{task}")
-    public Task addTask(@PathVariable String task){
-        return null;
+    @PostMapping("todo")
+    public TaskModel addTask(@RequestBody String task){
+        return taskService.addTask(task);
+    }
+
+    @GetMapping("todo/{id}")
+    public String getTaskDetails(@PathVariable int id){
+        return taskService.getTaskDetails(id);
     }
 
 }

@@ -10,22 +10,32 @@ import java.util.List;
 @Repository
 public class ToDoRepo {
     private List<TaskModel> toDoList = new ArrayList<>();
+    private int id = 0;
 
     public ToDoRepo(){}
 
     public  TaskModel addTask(String task){
-        TaskModel newTask = new TaskModel(task, Status.OPEN);
+        id++;
+        TaskModel newTask = new TaskModel(id, task, Status.OPEN);
         toDoList.add(newTask);
         return newTask;
     }
+
+/*    public  TaskModel addTask(TaskModel task){
+    toDoList.add(task);
+    return task;*/
+
 
     public List<TaskModel> getToDoList(){
         return toDoList;
     }
 
-
-
-
-
-
+    public String getTaskDetails(int id) {
+        for(TaskModel t: toDoList){
+            if(t.id() == id){
+                return t.toString();
+            }
+        }
+        return "";
+    }
 }

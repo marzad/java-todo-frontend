@@ -19,7 +19,7 @@ class TaskServiceTest {
     @Test
     void test_addTask() {
         String taskName = "Aufgabe1";
-        TaskModel newTask = new TaskModel(taskName, Status.OPEN);
+        TaskModel newTask = new TaskModel(1, taskName, Status.OPEN);
 
         when(toDoRepo.addTask(taskName)).thenReturn(newTask);
 
@@ -27,7 +27,6 @@ class TaskServiceTest {
 
         verify(toDoRepo).addTask(taskName);
         assertEquals(result, newTask);
-
     }
 
     @Test
@@ -40,5 +39,18 @@ class TaskServiceTest {
 
         assertEquals(expected, result);
 
+    }
+
+    @Test
+    void test_getTaskDetails(){
+
+        TaskModel newTask = new TaskModel(1, "abc",Status.OPEN);
+        toDoRepo.addTask("abc");
+
+        when(taskService.getTaskDetails(1)).thenReturn(newTask.toString());
+
+        String result = taskService.getTaskDetails(1);
+
+        assertEquals(result, newTask.toString());
     }
 }
