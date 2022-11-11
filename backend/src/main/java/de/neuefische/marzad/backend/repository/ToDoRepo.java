@@ -38,12 +38,21 @@ public class ToDoRepo {
     public TaskModel changeStatusOfTask(int id, Status status) {
         for(int i = 0; i < toDoList.size(); i++){
             if(toDoList.get(i).id() == id){
-                TaskModel newtask = new TaskModel(i, toDoList.get(i).description(), status);
+                TaskModel newtask = new TaskModel(id, toDoList.get(i).description(), status);
                 toDoList.set(i, newtask);
                 return newtask;
             }
         }
         return null;
 
+    }
+
+    public TaskModel deleteTask(int id) {
+        for(int i = 0; i < toDoList.size(); i++){
+            if(toDoList.get(i).id() == id){
+                return toDoList.remove(i);
+            }
+        }
+        return null;
     }
 }

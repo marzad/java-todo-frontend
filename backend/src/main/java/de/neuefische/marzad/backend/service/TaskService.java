@@ -33,4 +33,8 @@ public class TaskService {
     public TaskModel changeStatusOfTask(int id, Status status) {
         return toDoRepo.changeStatusOfTask(id, status);
     }
+
+    public TaskModel deleteTask(int id) {
+        return toDoRepo.deleteTask(id);
+    }
 }

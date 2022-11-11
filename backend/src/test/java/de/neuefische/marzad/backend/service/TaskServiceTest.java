@@ -66,4 +66,19 @@ class TaskServiceTest {
 
         assertEquals(result, newTask);
     }
+
+    @Test
+    void test_deleteTask(){
+
+        TaskModel newTask = new TaskModel(1, "abc",Status.DONE);
+        toDoRepo.addTask("abc");
+
+        when(taskService.deleteTask(1)).thenReturn(newTask);
+
+        TaskModel result = taskService.deleteTask(1);
+
+        assertEquals(result, newTask);
+    }
+
+
 }

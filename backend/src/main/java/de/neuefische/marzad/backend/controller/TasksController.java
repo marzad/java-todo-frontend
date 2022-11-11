@@ -1,11 +1,8 @@
 package de.neuefische.marzad.backend.controller;
 
-
-import de.neuefische.marzad.backend.model.Status;
 import de.neuefische.marzad.backend.model.TaskModel;
 import de.neuefische.marzad.backend.repository.ToDoRepo;
 import de.neuefische.marzad.backend.service.TaskService;
-import org.springframework.scheduling.config.Task;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,8 +23,8 @@ public class TasksController {
     }
 
     @PostMapping("todo")
-    public TaskModel addTask(@RequestBody String task){
-        return taskService.addTask(task);
+    public String addTask(@RequestBody String task){
+        return taskService.addTask(task).description();
     }
 
     @GetMapping("todo/{id}")
@@ -36,8 +33,14 @@ public class TasksController {
     }
 
     @PutMapping("todo/{id}")
-    public TaskModel changeStatusOfTask(@RequestParam int id, @RequestParam TaskModel task){
+    public TaskModel changeStatusOfTask(@PathVariable int id, @RequestBody TaskModel task){
         return taskService.changeStatusOfTask(id, task.status());
+    }
+
+
+    @DeleteMapping("todo/{id}")
+    public void deleteTask(@PathVariable int id){
+        taskService.deleteTask(id);
     }
 
 }
