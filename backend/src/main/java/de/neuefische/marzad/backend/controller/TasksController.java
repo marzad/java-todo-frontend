@@ -30,7 +30,7 @@ public class TasksController {
     }
 
     @GetMapping("todo/{id}")
-    public String getTaskDetails(@PathVariable int id){
+    public TaskModel getTaskDetails(@PathVariable int id){
         return taskService.getTaskDetails(id);
     }
 

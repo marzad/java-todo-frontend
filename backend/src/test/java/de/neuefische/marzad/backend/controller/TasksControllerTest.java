@@ -50,6 +50,12 @@ class TasksControllerTest {
         toDoRepo.addTask("abc");
         mockMvc.perform(get("/api/todo/1"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("TaskModel[id=1, description=abc, status=OPEN]"));
+                .andExpect(content().json("""
+{
+"id": 1,
+"description":  "abc",
+"status":  "OPEN"
+}
+"""));
     }
 }

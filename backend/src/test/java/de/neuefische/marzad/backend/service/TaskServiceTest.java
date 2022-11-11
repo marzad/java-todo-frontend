@@ -47,9 +47,9 @@ class TaskServiceTest {
         TaskModel newTask = new TaskModel(1, "abc",Status.OPEN);
         toDoRepo.addTask("abc");
 
-        when(taskService.getTaskDetails(1)).thenReturn(newTask.toString());
+        when(taskService.getTaskDetails(1)).thenReturn(newTask);
 
-        String result = taskService.getTaskDetails(1);
+        TaskModel result = taskService.getTaskDetails(1);
 
         assertEquals(result, newTask.toString());
     }

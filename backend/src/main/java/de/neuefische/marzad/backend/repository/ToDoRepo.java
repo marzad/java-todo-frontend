@@ -30,12 +30,12 @@ public class ToDoRepo {
         return toDoList;
     }
 
-    public String getTaskDetails(int id) {
+    public TaskModel getTaskDetails(int id) {
         for(TaskModel t: toDoList){
             if(t.id() == id){
-                return t.toString();
+                return t;
             }
         }
-        return "";
+        return null;
     }
 }

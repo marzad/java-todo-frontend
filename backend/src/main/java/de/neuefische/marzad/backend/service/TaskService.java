@@ -25,7 +25,7 @@ public class TaskService {
         return toDoRepo.getToDoList();
     }
 
-    public String getTaskDetails(int id) {
+    public TaskModel getTaskDetails(int id) {
         return toDoRepo.getTaskDetails(id);
     }
 }
