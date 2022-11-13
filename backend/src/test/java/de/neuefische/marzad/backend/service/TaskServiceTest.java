@@ -57,7 +57,7 @@ class TaskServiceTest {
     @Test
     void test_changeStatusOfTask(){
 
-        TaskModel newTask = new TaskModel(1, "abc",Status.DONE);
+        TaskModel newTask = new TaskModel(1, "abc",Status.OPEN);
         toDoRepo.addTask("abc");
 
         when(taskService.changeStatusOfTask(1, Status.DONE)).thenReturn(newTask);
@@ -70,7 +70,7 @@ class TaskServiceTest {
     @Test
     void test_deleteTask(){
 
-        TaskModel newTask = new TaskModel(1, "abc",Status.DONE);
+        TaskModel newTask = new TaskModel(1, "abc",Status.OPEN);
         toDoRepo.addTask("abc");
 
         when(taskService.deleteTask(1)).thenReturn(newTask);

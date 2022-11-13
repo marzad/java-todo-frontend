@@ -5,9 +5,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -20,17 +22,17 @@ class TasksControllerTest {
     ToDoRepo toDoRepo;
 
     @Test
-    void getToDoListTest() throws Exception {
+    void a_getToDoListTest() throws Exception {
 
         mockMvc.perform(get("/api/todo"))
-                .andExpect(status().isOk());
-/*                .andExpect(content().json("""
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
 []
-"""));*/
+"""));
     }
 
     @Test
-    void addTaskTest() throws Exception {
+    void b_addTaskTest() throws Exception {
         mockMvc.perform(post("/api/todo").content("abc"))
                 .andExpect(status().isOk());
 /*                .andExpect(content().json("""
@@ -41,9 +43,9 @@ class TasksControllerTest {
 }
 """));*/
     }
-
+@DirtiesContext
     @Test
-    void getTaskDetailsTest() throws Exception {
+    void c_getTaskDetailsTest() throws Exception {
         toDoRepo.addTask("abc");
         mockMvc.perform(get("/api/todo/1"))
                 .andExpect(status().isOk());
@@ -53,7 +55,7 @@ class TasksControllerTest {
             "id": 1, "description":  "abc", "status":  "OPEN"
         }*/
     }
-
+@DirtiesContext
     @Test
     void deleteTaskTest() throws Exception {
         toDoRepo.addTask("abc");
